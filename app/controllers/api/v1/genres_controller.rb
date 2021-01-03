@@ -16,7 +16,7 @@ module Api
 
       def create
         @genre = Genre.new(genre_params)
-        if @genre.save
+        if @genre.save!
           render json: @genre, status: :created
         else
           render json: @genre.errors, status: :unprocessable_entity
@@ -24,7 +24,7 @@ module Api
       end
 
       def destroy
-        @genre.destroy
+        @genre.destroy!
         head :no_content
       end
 

@@ -16,7 +16,7 @@ module Api
 
       def create
         @movie = Movie.new(movie_params)
-        if @movie.save
+        if @movie.save!
           render json: @movie, status: :created
         else
           render json: @movie.errors, status: :unprocessable_entity
@@ -24,7 +24,7 @@ module Api
       end
 
       def destroy
-        @movie.destroy
+        @movie.destroy!
         head :no_content
       end
 

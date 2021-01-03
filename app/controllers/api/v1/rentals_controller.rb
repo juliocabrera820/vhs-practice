@@ -16,7 +16,7 @@ module Api
 
       def create
         @rental = Rental.new(rental_params)
-        if @rental.save
+        if @rental.save!
           render json: @rental, status: :created
         else
           render json: @rental.errors, status: :unprocessable_entity
@@ -24,7 +24,7 @@ module Api
       end
 
       def destroy
-        @rental.destroy
+        @rental.destroy!
         head :no_content
       end
 

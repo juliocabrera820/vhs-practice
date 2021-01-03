@@ -16,7 +16,7 @@ module Api
 
       def create
         @vhs = Vhs.new(vhs_params)
-        if @vhs.save
+        if @vhs.save!
           render json: @vhs, status: :created
         else
           render json: @vhs.errors, status: :unprocessable_entity
@@ -24,7 +24,7 @@ module Api
       end
 
       def destroy
-        @vhs.destroy
+        @vhs.destroy!
         head :no_content
       end
 
