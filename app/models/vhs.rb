@@ -2,5 +2,6 @@
 
 class Vhs < ApplicationRecord
   include Rentable
-  validates :serial_number, presence: true, numericality: { only_integer: true }
+  validates :serial_number, presence: true, numericality: { only_integer: true },
+                            uniqueness: true
 end

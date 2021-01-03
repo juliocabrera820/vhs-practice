@@ -25,7 +25,8 @@ RSpec.describe 'Clients', type: :request do
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 4,
           'name' => 'laura',
-          'home_address' => 'c 55' }
+          'home_address' => 'c 55',
+          'rentals' => [] }
       )
     end
   end
@@ -43,7 +44,8 @@ RSpec.describe 'Clients', type: :request do
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 5,
           'name' => 'john',
-          'home_address' => 'c 21 #44' }
+          'home_address' => 'c 21 #44',
+          'rentals' => [] }
       )
     end
   end
