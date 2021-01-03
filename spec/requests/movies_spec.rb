@@ -30,7 +30,8 @@ RSpec.describe 'Movies', type: :request do
           'year' => 2010,
           'length' => 110,
           'description' => 'shadows',
-          'director' => 'alexi' }
+          'director' => 'alexi',
+          'movie_genres' => [] }
       )
     end
   end
@@ -51,7 +52,8 @@ RSpec.describe 'Movies', type: :request do
           'year' => 2019,
           'length' => 110,
           'description' => 'cultural',
-          'director' => 'idk idk' }
+          'director' => 'idk idk',
+          'movie_genres' => [] }
       )
     end
   end

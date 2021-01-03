@@ -24,7 +24,8 @@ RSpec.describe 'Vhs', type: :request do
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 4,
-          'serial_number' => 1_251_561 }
+          'serial_number' => 1_251_561,
+          'rentals' => [] }
       )
     end
   end
@@ -41,7 +42,8 @@ RSpec.describe 'Vhs', type: :request do
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 5,
-          'serial_number' => 4_512_045 }
+          'serial_number' => 4_512_045,
+          'rentals' => [] }
       )
     end
   end

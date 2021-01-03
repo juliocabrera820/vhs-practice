@@ -24,7 +24,8 @@ RSpec.describe 'Genres', type: :request do
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 4,
-          'name' => 'laura' }
+          'name' => 'laura',
+          'movie_genres' => [] }
       )
     end
   end
@@ -41,7 +42,8 @@ RSpec.describe 'Genres', type: :request do
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 5,
-          'name' => 'horror' }
+          'name' => 'horror',
+          'movie_genres' => [] }
       )
     end
   end
