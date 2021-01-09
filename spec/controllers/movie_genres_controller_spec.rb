@@ -8,8 +8,6 @@ RSpec.describe Api::V1::MovieGenresController, type: :controller do
       params = { movie_id: 1, genre_id: 1 }
       should permit(:movie_id, :genre_id).for(:create, params: params)
     end
-  end
-  describe 'POST /movie_genres' do
     it 'does not create a new movie_genre' do
       params = { movie_id: 'x', genre_id: 'x', code: 100 }
       should_not permit(:code).for(:create, params: params)

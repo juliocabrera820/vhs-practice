@@ -9,8 +9,6 @@ RSpec.describe Api::V1::MoviesController, type: :controller do
                   description: 'shadows', zip_code: 52_010 }
       should permit(:title, :year, :length, :description, :director).for(:create, params: params)
     end
-  end
-  describe 'POST /movies' do
     it 'does not create a new movie' do
       params = { title: 'cob', year: 2010, length: 110, director: 'alexi',
                  description: 'shadows', zip_code: 52_010 }

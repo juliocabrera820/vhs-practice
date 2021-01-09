@@ -8,8 +8,6 @@ RSpec.describe Api::V1::VhsController, type: :controller do
       params = { serial_number: 4_512_045 }
       should permit(:serial_number).for(:create, params: params)
     end
-  end
-  describe 'POST /vhs' do
     it 'does not create a new vhs' do
       params = { serial_number: 4_512_045, color: 'black' }
       should_not permit(:color).for(:create, params: params)
