@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotUnique, with: :not_unique
   rescue_from ActiveRecord::RecordInvalid, with: :invalid
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
+  rescue_from ActionController::ParameterMissing, with: :parameter_missing
 
   private
 
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::API
 
   def not_destroyed
     render json: { message: 'record not destroyed' }, status: :unprocessable_entity
+  end
+
+  def parameter_missing
+    render json: { message: 'params are missing' }, status: :unprocessable_entity
   end
 end
