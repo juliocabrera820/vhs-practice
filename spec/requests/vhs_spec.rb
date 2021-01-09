@@ -9,8 +9,6 @@ RSpec.describe 'Vhs', type: :request do
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body).size).to eq(0)
     end
-  end
-  describe 'GET /vhs' do
     it 'returns all vhs' do
       FactoryBot.create_list(:random_vhs, 3)
       get '/api/v1/vhs'
@@ -28,10 +26,12 @@ RSpec.describe 'Vhs', type: :request do
           'rentals' => [] }
       )
     end
-  end
-  describe 'POST /vhs' do
-    it 'returns an unprocessable entity status' do
+    it 'returns an unprocessable entity status due to serial number is a string' do
       post '/api/v1/vhs', params: { serial_number: 'w' }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+    it 'returns a parameter missing exception' do
+      post '/api/v1/vhs', params: {}
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end

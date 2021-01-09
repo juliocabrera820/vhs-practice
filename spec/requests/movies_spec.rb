@@ -9,8 +9,6 @@ RSpec.describe 'Movies', type: :request do
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body).size).to eq(0)
     end
-  end
-  describe 'GET /movies' do
     it 'returns all movies' do
       FactoryBot.create_list(:random_movie, 4)
       get '/api/v1/movies'
@@ -34,10 +32,12 @@ RSpec.describe 'Movies', type: :request do
           'movie_genres' => [] }
       )
     end
-  end
-  describe 'POST /movies' do
-    it 'returns an unprocessable entity status' do
+    it 'returns an unprocessable entity status due to empty description' do
       post '/api/v1/movies', params: { title: 'cob', year: 2010, length: 110, director: 'alexi', description: '' }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+    it 'returns a parameter missing exception' do
+      post '/api/v1/movies', params: {}
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
