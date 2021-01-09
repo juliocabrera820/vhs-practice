@@ -9,8 +9,6 @@ RSpec.describe 'Rentals', type: :request do
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body).size).to eq(0)
     end
-  end
-  describe 'GET /rentals' do
     it 'returns all rentals' do
       FactoryBot.create_list(:random_rental, 3)
       get '/api/v1/rentals'
@@ -31,10 +29,12 @@ RSpec.describe 'Rentals', type: :request do
           'vhs' => { 'id' => 4, 'serial_number' => 4_512_045 } }
       )
     end
-  end
-  describe 'POST /rentals' do
     it 'returns an unprocessable entity status with not valid entities' do
       post '/api/v1/rentals', params: { client_id: 10, vhs_id: 10 }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+    it 'returns a parameter missing exception' do
+      post '/api/v1/rentals', params: {}
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end

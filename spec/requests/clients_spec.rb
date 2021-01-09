@@ -4,13 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'Clients', type: :request do
   describe 'GET /clients' do
-    it 'returns clients' do
+    it 'returns zero clients' do
       get '/api/v1/clients'
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body).size).to eq(0)
     end
-  end
-  describe 'GET /clients' do
     it 'returns all clients' do
       FactoryBot.create_list(:random_client, 3)
       get '/api/v1/clients'
@@ -29,10 +27,12 @@ RSpec.describe 'Clients', type: :request do
           'rentals' => [] }
       )
     end
-  end
-  describe 'POST /clients' do
-    it 'returns an unprocessable entity status' do
+    it 'returns an unprocessable entity status due to empty home address' do
       post '/api/v1/clients', params: { name: 'john', home_address: '' }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+    it 'returns a parameter missing exception' do
+      post '/api/v1/clients', params: {}
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
