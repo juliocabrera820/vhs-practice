@@ -17,8 +17,9 @@ RSpec.describe 'Vhs', type: :request do
     end
   end
   describe 'POST /vhs' do
+    let(:movie) { FactoryBot.create(:movie) }
     it 'returns a new vhs' do
-      post '/api/v1/vhs', params: { serial_number: 1_251_561 }
+      post '/api/v1/vhs', params: { serial_number: 1_251_561, movie_id: movie.id }
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to eq(
         { 'id' => 4,
