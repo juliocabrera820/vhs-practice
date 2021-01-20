@@ -14,5 +14,6 @@ RSpec.describe Movie, type: :model do
   end
   describe 'associations' do
     it { should have_many(:movie_genres) }
+    it { should have_many(:vhs) }
   end
 end
