@@ -43,7 +43,7 @@ module Api
       end
 
       def vhs_params
-        params.permit(:serial_number)
+        params.permit(:serial_number, :movie_id)
       end
     end
   end
