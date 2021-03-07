@@ -5,23 +5,18 @@ module Api
     class ClientsController < ApplicationController
       def index
         @clients = ListClientsAction.new.perform.clients
-        render json: @clients, status: :ok
+        render json: ClientsPresenter.new(@clients).as_json, status: :ok
       end
 
       def show
         @client = ShowClientAction.new.perform(params[:id].to_i).client
-        render json: @client, status: :ok
+        render json: ClientPresenter.new(@client).as_json, status: :ok
       end
 
       def create
         @client_input = ClientInput.new(client_params)
-        CreateClientAction.new.perform(@client_input)
-                          .and_then do |client:|
-          render json: client, status: :created
-        end
-                          .or_else do |errors|
-          render json: errors, status: :unprocessable_entity
-        end
+        @client = CreateClientAction.new.perform(@client_input).client
+        render json: ClientPresenter.new(@client).as_json, status: :created
       end
 
       def destroy
@@ -31,13 +26,8 @@ module Api
 
       def update
         @client_input = ClientInput.new(client_params)
-        UpdateClientAction.new.perform(params[:id], @client_input)
-                          .and_then do |client:|
-          render json: client, status: :created
-        end
-                          .or_else do |errors|
-          render json: errors, status: :unprocessable_entity
-        end
+        @client = UpdateClientAction.new.perform(params[:id], @client_input).client
+        render json: ClientPresenter.new(@client).as_json, status: :ok
       end
 
       private
