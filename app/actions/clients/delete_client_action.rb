@@ -1,4 +1,6 @@
-class DeleteClientAction < Action
+# frozen_string_literal: true
+
+class DeleteClientAction < BaseAction
   result :client
 
   def perform(id)

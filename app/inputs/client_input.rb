@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class ClientInput
-  include ActiveModel::Model
-
-  attr_accessor :name, :home_address
+class ClientInput < BaseInput
+  attribute :name
+  attribute :home_address
 
   validates :name, :home_address, presence: true
 end

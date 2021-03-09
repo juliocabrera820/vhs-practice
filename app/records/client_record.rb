@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-class ClientRecord < RecordBase
-  include Rentable
+class ClientRecord < BaseRecord
   self.table_name = 'clients'
 end

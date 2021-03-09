@@ -1,4 +1,6 @@
-class ShowClientAction < Action
+# frozen_string_literal: true
+
+class ShowClientAction < BaseAction
   result :client
 
   def perform(id)

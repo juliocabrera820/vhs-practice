@@ -1,4 +1,6 @@
-class ListClientsAction < Action
+# frozen_string_literal: true
+
+class ListClientsAction < BaseAction
   result :clients
 
   def perform

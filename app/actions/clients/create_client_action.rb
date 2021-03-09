@@ -1,4 +1,6 @@
-class CreateClientAction < Action
+# frozen_string_literal: true
+
+class CreateClientAction < BaseAction
   result :client
 
   def perform(input)

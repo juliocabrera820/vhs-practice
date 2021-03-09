@@ -1,4 +1,6 @@
-class UpdateClientAction < Action
+# frozen_string_literal: true
+
+class UpdateClientAction < BaseAction
   result :client
 
   def perform(id, input)
