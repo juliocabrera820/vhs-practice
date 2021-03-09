@@ -23,8 +23,9 @@ module VhsPractice
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.autoload_paths += Dir[Rails.root.join('app', 'actions', 'client')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'actions', 'clients')]
     config.autoload_paths += Dir[Rails.root.join('app', 'inputs')]
+    config.autoload_paths += Dir[Rails.root.join('lib')]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
