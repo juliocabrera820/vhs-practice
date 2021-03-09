@@ -15,8 +15,12 @@ module Api
 
       def create
         @client_input = ClientInput.new(client_params)
-        @client = CreateClientAction.new.perform(@client_input).client
-        render json: ClientPresenter.new(@client).as_json, status: :created
+        CreateClientAction.new.perform(@client_input).and_then do |client:|
+          render json: ClientPresenter.new(client).as_json, status: :created
+        end
+        .or_else do |errors|
+          render json: errors, status: :unprocessable_entity
+        end
       end
 
       def destroy
@@ -26,8 +30,12 @@ module Api
 
       def update
         @client_input = ClientInput.new(client_params)
-        @client = UpdateClientAction.new.perform(params[:id], @client_input).client
-        render json: ClientPresenter.new(@client).as_json, status: :ok
+        UpdateClientAction.new.perform(params[:id], @client_input).and_then do |client:|
+          render json: ClientPresenter.new(client).as_json, status: :ok
+        end
+        .or_else do |errors|
+          render json: errors, status: :unprocessable_entity
+        end
       end
 
       private
