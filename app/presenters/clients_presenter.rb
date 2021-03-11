@@ -8,7 +8,8 @@ class ClientsPresenter
       {
         id: client.id,
         name: client.name,
-        home_address: client.home_address
+        home_address: client.home_address,
+        rentals: client.rentals
       }
     end
   end
